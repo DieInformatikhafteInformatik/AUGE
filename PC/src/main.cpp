@@ -7,7 +7,6 @@
 #include "command.h"
 #include "stringutils.h"
 #include "auge.h"
-#include "mouse.h"
 
 LRESULT CALLBACK WindowProc(HWND hWindow, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -56,16 +55,6 @@ int main()
 
     ShowWindow(hWindow, 1);
     UpdateWindow(hWindow);
-
-    LoopThread lt = createMousePositionThread(hWindow, [](POINT p)
-    {
-        std::cout << p.x << std::endl << p.y << std::endl << std::endl;
-    }, 1);
-
-    
-    lt.start();
-    lt.setDaemon();
-
 
     MSG msg{};
     long n = 0;
