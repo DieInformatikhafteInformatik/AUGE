@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\AUGE.dir/objects.a
+C:\Users\Joel\Documents\EGK-Projekt\dependencies\mingw\bin\ar.exe qc CMakeFiles\AUGE.dir/objects.a @CMakeFiles\AUGE.dir\objects1.rsp
+C:\Users\Joel\Documents\EGK-Projekt\dependencies\mingw\bin\g++.exe -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\AUGE.dir/objects.a -Wl,--no-whole-archive -o AUGE.exe -Wl,--out-implib,libAUGE.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\AUGE.dir\linkLibs.rsp
