@@ -1,7 +1,7 @@
 # Prerequisites
 *.d
 
-PC/build/
+PC/build
 
 # Compiled Object files
 *.slo
