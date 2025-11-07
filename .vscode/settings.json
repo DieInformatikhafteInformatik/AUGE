@@ -1,4 +1,5 @@
 {
+    "cmake.cmakePath": "cmake.exe",
     "cmake.sourceDirectory": "${workspaceFolder}/PC",
     "cmake.buildDirectory": "${workspaceFolder}/PC/build",
     "files.associations": {

@@ -3,15 +3,15 @@
     "configurePresets": [
         {
             "name": "debug",
-            "displayName": "GCC 8.1.0 x86_64-w64-mingw32",
+            "displayName": "MinGW64",
             "description": "Using compilers: C = C:/mingw64/bin/gcc.exe, CXX = C:/mingw64/bin/g++.exe",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
-                "CMAKE_C_COMPILER": "C:/Users/Joel/Documents/EGK-Projekt/dependencies/mingw/bin/gcc.exe",
-                "CMAKE_CXX_COMPILER": "C:/Users/Joel/Documents/EGK-Projekt/dependencies/mingw/bin/g++.exe",
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_C_COMPILER": "gcc.exe",
+                "CMAKE_CXX_COMPILER": "g++.exe",
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         }
     ]

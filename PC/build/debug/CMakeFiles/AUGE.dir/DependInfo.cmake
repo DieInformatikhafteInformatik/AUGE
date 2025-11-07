@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Joel/Documents/EGK-Projekt/AUGE/PC/src/auge.cpp" "CMakeFiles/AUGE.dir/src/auge.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/auge.cpp.obj.d"
-  "C:/Users/Joel/Documents/EGK-Projekt/AUGE/PC/src/command.cpp" "CMakeFiles/AUGE.dir/src/command.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/command.cpp.obj.d"
-  "C:/Users/Joel/Documents/EGK-Projekt/AUGE/PC/src/main.cpp" "CMakeFiles/AUGE.dir/src/main.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/main.cpp.obj.d"
-  "C:/Users/Joel/Documents/EGK-Projekt/AUGE/PC/src/stringutils.cpp" "CMakeFiles/AUGE.dir/src/stringutils.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/stringutils.cpp.obj.d"
+  "C:/Users/BSG535605/Documents/EGK-Projekt/AUGE/PC/src/auge.cpp" "CMakeFiles/AUGE.dir/src/auge.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/auge.cpp.obj.d"
+  "C:/Users/BSG535605/Documents/EGK-Projekt/AUGE/PC/src/command.cpp" "CMakeFiles/AUGE.dir/src/command.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/command.cpp.obj.d"
+  "C:/Users/BSG535605/Documents/EGK-Projekt/AUGE/PC/src/main.cpp" "CMakeFiles/AUGE.dir/src/main.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/main.cpp.obj.d"
+  "C:/Users/BSG535605/Documents/EGK-Projekt/AUGE/PC/src/stringutils.cpp" "CMakeFiles/AUGE.dir/src/stringutils.cpp.obj" "gcc" "CMakeFiles/AUGE.dir/src/stringutils.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
