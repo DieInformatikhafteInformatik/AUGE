@@ -60,7 +60,7 @@ int main()
     LoopThread lt = createMousePositionThread(hWindow, [](POINT p)
     {
         std::cout << p.x << std::endl << p.y << std::endl << std::endl;
-    });
+    }, 1);
 
     
     lt.start();
