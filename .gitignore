@@ -1,16 +1,12 @@
 # Prerequisites
 *.d
 
-<<<<<<< HEAD
 # Ignore CMake build directory
 build/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
-=======
-PC/build
->>>>>>> e6a993375b2152d406889e10d5f8fda201d2792c
 
 # Compiled Object files
 *.slo
