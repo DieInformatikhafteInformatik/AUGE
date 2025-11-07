@@ -1,6 +1,8 @@
 #pragma once
 
+#include <functional>
 #include <string>
+#include <memory>
 
 class CommandManager;
 class InputReader;
