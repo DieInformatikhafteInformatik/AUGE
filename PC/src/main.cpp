@@ -7,7 +7,6 @@
 #include "command.h"
 #include "stringutils.h"
 #include "auge.h"
-#include "mouse.h"
 
 LRESULT CALLBACK WindowProc(HWND hWindow, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -22,6 +21,23 @@ LRESULT CALLBACK WindowProc(HWND hWindow, UINT uMsg, WPARAM wParam, LPARAM lPara
         default:
             return DefWindowProc(hWindow, uMsg, wParam, lParam);
     }
+}
+
+static bool running = false;
+
+void checkMousePosition(HWND hWindow)
+{
+    while(running)
+    {
+        POINT mousePos;
+        GetCursorPos(&mousePos);
+
+        std::cout << 
+            "x: " << mousePos.x << std::endl <<
+            "y: " << mousePos.y << std::endl << std::endl;
+    }
+
+    std::cout << "Thread End" << std::endl;
 }
 
 int main()
@@ -57,15 +73,8 @@ int main()
     ShowWindow(hWindow, 1);
     UpdateWindow(hWindow);
 
-    LoopThread lt = createMousePositionThread(hWindow, [](POINT p)
-    {
-        std::cout << p.x << std::endl << p.y << std::endl << std::endl;
-    });
-
-    
-    lt.start();
-    lt.setDaemon();
-
+    running = true;
+    std::thread t{checkMousePosition, hWindow};
 
     MSG msg{};
     long n = 0;
@@ -74,4 +83,5 @@ int main()
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
+    running = false;
 }

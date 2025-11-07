@@ -50,4 +50,3 @@ void AUGESystem::evalLine(std::string s)
         std::cout << "Unbekannter Command" << std::endl;
     }
 }
-
