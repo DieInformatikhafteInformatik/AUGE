@@ -1,9 +1,11 @@
+#include <stdlib.h>
+
 #include "packet.h"
 #include "common_print.h"
 
-uint16_t genChecksum(const uint8_t *data, size_t from, size_t to)
+ui16_t genChecksum(const ui8_t *data, size_t from, size_t to)
 {
-    uint16_t checksum = 5381;
+    ui16_t checksum = 5381;
     for(size_t i = from; i < to; i++)
     {
         checksum = 33 * checksum + data[i];
@@ -12,11 +14,10 @@ uint16_t genChecksum(const uint8_t *data, size_t from, size_t to)
     return checksum;
 }
 
-uint16_t genPacketChecksum(const Packet *packet)
+ui16_t genPacketChecksum(const Packet *packet)
 {
-    
     return genChecksum(
-        reinterpret_cast<const uint8_t*>(packet),
+        reinterpret_cast<const ui8_t*>(packet),
         3,
         5
     );
@@ -40,7 +41,7 @@ ui16_t getChecksum(const ui8_t* data, size_t numOfBytes)
     return checksum;
 }
 
-bool checkHeader(const ui8_t* data, size_t numOfBytes)
+bool checkHeaderSize(const ui8_t* data, size_t numOfBytes)
 {
     if(numOfBytes < 4)
     {
@@ -77,30 +78,30 @@ void printPacketInfo(const ui8_t* data, size_t numOfBytes)
     cpr::newLine();
 
     cpr::print("Checksum: ");
-    cpr::print()
 }
 
-Packet* rawDataToPacket(const uint8_t* rawData, size_t numOfBytes)
+bool isValidPacketData(const ui8_t *rawData, size_t numOfBytes)
 {
-    if(!checkHeader(rawData, numOfBytes)) return nullptr;
+    if(!checkHeaderSize(rawData, numOfBytes)) return false;
 
-    uint8_t sz = rawData[1];
-    if(sz != numOfBytes) 
+    ui8_t expectedNumOfBytes = rawData[1];
+    if(expectedNumOfBytes != numOfBytes) 
     {
         cpr::println("Fehler: Packet ist unvollständig!");
         printPacketInfo(rawData, numOfBytes);
 
-        return nullptr;
+        return false;
     }
 
-    // TODO: Methode für Array-Zugriff erstellen
-    ui16_t providedChecksum = getChecksum(rawData, numOfBytes);
+    ui16_t expectedChecksum = getChecksum(rawData, numOfBytes);
     ui16_t checksum = genChecksum(rawData, 3, 5);
-
-    if(checksum != providedChecksum)
+    if(checksum != expectedChecksum)
     {
         cpr::println("Fehler: Packet ist beschädigt!");
         printPacketInfo(rawData, numOfBytes);
-    }
 
+        return false;
+    }
+    return true;
 }
+
