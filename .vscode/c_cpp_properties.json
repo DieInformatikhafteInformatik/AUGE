@@ -4,7 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/PC/src/include"
+                "${workspaceFolder}/PC/include",
+                "${workspaceFolder}/shared/include",
+                "${workspaceFolder}/shared/src"
             ],
             "defines": [
                 "_DEBUG",
