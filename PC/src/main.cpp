@@ -3,6 +3,7 @@
 #include <functional>
 #include <thread>
 #include <concepts>
+#include <string>
 
 #include "command.h"
 #include "stringutils.h"
@@ -10,9 +11,7 @@
 
 int main()
 {
-    int i = 10;
-    char* buffer = (char*) calloc(1, 3);
-    itoa(25, buffer, 10);
-
-    std::cout << buffer << std::endl;
+    std::string s = "\\\\.\\COM";
+    
+    std::cout << s << std::endl;
 }
