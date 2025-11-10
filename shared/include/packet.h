@@ -8,6 +8,8 @@ struct Packet
     ui8_t type; // TODO: Diesen Member inaccessible und statisch (je Subklasse) machen
     ui8_t size;
     ui16_t checksum;
+
+    
 };
 
 struct ServoMovePacket : public Packet
