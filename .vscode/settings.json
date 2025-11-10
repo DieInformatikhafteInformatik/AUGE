@@ -1,7 +1,7 @@
 {
     "cmake.cmakePath": "cmake.exe",
-    "cmake.sourceDirectory": "${workspaceFolder}/PC",
-    "cmake.buildDirectory": "${workspaceFolder}/PC/build",
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
     "files.associations": {
         "*.h": "cpp",
         "iostream": "cpp",
