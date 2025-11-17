@@ -28,7 +28,7 @@ LoopThread::LoopThread(LoopFunc lFunc, ConditionFunc cFunc, long timeout) :
 void LoopThread::start()
 {
     running = true;
-    thread = std::thread(&threadFunction, this);
+    thread = std::thread(&LoopThread::threadFunction, this, timeout);
 }
 
 /**

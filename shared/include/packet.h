@@ -5,22 +5,24 @@
 
 struct Packet
 {
-    ui8_t type; // TODO: Diesen Member inaccessible und statisch (je Subklasse) machen
+    ui8_t type; // TODO: Diesen Member immutable und statisch (je Subklasse) machen
     ui8_t size;
     ui16_t checksum;
 
-    
+    virtual void run();
 };
 
 struct ServoMovePacket : public Packet
 {
     float duration;
     float angle;
+
+    void run();
 };
 
 struct LEDTogglePacket : public Packet
 {
-
+    void run();
 };
 
 /**
