@@ -3,16 +3,10 @@
 #include <cstring>
 #include <stdint.h>
 
-using PacketTypeId = uint8_t;
+using packet_typeid_t = uint8_t;
 
-
-class BasePacket
-{
-    virtual ~BasePacket() = default;
-};
-
-template<PacketTypeId TypeId = 0>
-class Packet : public BasePacket
+template<packet_typeid_t TypeId = 0>
+class Packet
 {
 public:
     static constexpr uint8_t type = TypeId;
@@ -54,7 +48,7 @@ uint16_t genChecksum(const uint8_t* ptr, size_t from, size_t to);
  * @param packet 
  * @return uint16_t
  */
-template<PacketTypeId TypeId>
+template<packet_typeid_t TypeId>
 inline uint16_t genPacketChecksum(const Packet<TypeId>* packet)
 {
     return genChecksum(
@@ -64,7 +58,7 @@ inline uint16_t genPacketChecksum(const Packet<TypeId>* packet)
     );
 }
 
-template<PacketTypeId TypeId>
+template<packet_typeid_t TypeId>
 inline void fillPacketHeader(Packet<TypeId>& packet)
 {
     packet.size = sizeof(packet);
