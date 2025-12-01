@@ -1,4 +1,4 @@
-#include <common_print.h>
+#include "common_print.h"
 
 // Komplett von ChatGPT erstellt, ungetestet
 namespace cpr
@@ -16,7 +16,7 @@ namespace cpr
     #endif
     }
 
-    void print(ui8_t n)
+    void print(uint8_t n)
     {
     #ifdef ARDUINO_h
         Serial.print(static_cast<unsigned int>(n));
@@ -25,7 +25,7 @@ namespace cpr
     #endif
     }
 
-    void print(ui16_t n)
+    void print(uint16_t n)
     {
     #ifdef ARDUINO_h
         Serial.print(n);
@@ -34,7 +34,7 @@ namespace cpr
     #endif
     }
 
-    void print(ui32_t n)
+    void print(uint32_t n)
     {
     #ifdef ARDUINO_h
         Serial.print(n);
@@ -43,7 +43,7 @@ namespace cpr
     #endif
     }
 
-    void print(ui64_t n)
+    void print(uint64_t n)
     {
     #ifdef ARDUINO_h
         Serial.print((unsigned long long)n);
@@ -52,7 +52,7 @@ namespace cpr
     #endif
     }
 
-    void print(i8_t n)
+    void print(int8_t n)
     {
     #ifdef ARDUINO_h
         Serial.print(static_cast<int>(n));
@@ -61,7 +61,7 @@ namespace cpr
     #endif
     }
 
-    void print(i16_t n)
+    void print(int16_t n)
     {
     #ifdef ARDUINO_h
         Serial.print(n);
@@ -70,7 +70,7 @@ namespace cpr
     #endif
     }
 
-    void print(i32_t n)
+    void print(int32_t n)
     {
     #ifdef ARDUINO_h
         Serial.print(n);
@@ -79,7 +79,7 @@ namespace cpr
     #endif
     }
 
-    void print(i64_t n)
+    void print(int64_t n)
     {
     #ifdef ARDUINO_h
         Serial.print((long long)n);
@@ -97,7 +97,7 @@ namespace cpr
     #endif
     }
 
-    void print(fl32_t f)
+    void print(float f)
     {
     #ifdef ARDUINO_h
         Serial.print(f, 6);
@@ -106,12 +106,12 @@ namespace cpr
     #endif
     }
 
-    void print(fl64_t f)
+    void print(double d)
     {
     #ifdef ARDUINO_h
-        Serial.print(f, 6);
+        Serial.print(d, 6);
     #else
-        std::cout << f;
+        std::cout << d;
     #endif
     }
 
@@ -128,7 +128,7 @@ namespace cpr
     #endif
     }
 
-    void println(ui8_t n)
+    void println(uint8_t n)
     {
     #ifdef ARDUINO_h
         Serial.println(static_cast<unsigned int>(n));
@@ -137,7 +137,7 @@ namespace cpr
     #endif
     }
 
-    void println(ui16_t n)
+    void println(uint16_t n)
     {
     #ifdef ARDUINO_h
         Serial.println(n);
@@ -146,7 +146,7 @@ namespace cpr
     #endif
     }
 
-    void println(ui32_t n)
+    void println(uint32_t n)
     {
     #ifdef ARDUINO_h
         Serial.println(n);
@@ -155,7 +155,7 @@ namespace cpr
     #endif
     }
 
-    void println(ui64_t n)
+    void println(uint64_t n)
     {
     #ifdef ARDUINO_h
         Serial.println((unsigned long long)n);
@@ -164,7 +164,7 @@ namespace cpr
     #endif
     }
 
-    void println(i8_t n)
+    void println(int8_t n)
     {
     #ifdef ARDUINO_h
         Serial.println(static_cast<int>(n));
@@ -173,7 +173,7 @@ namespace cpr
     #endif
     }
 
-    void println(i16_t n)
+    void println(int16_t n)
     {
     #ifdef ARDUINO_h
         Serial.println(n);
@@ -182,7 +182,7 @@ namespace cpr
     #endif
     }
 
-    void println(i32_t n)
+    void println(int32_t n)
     {
     #ifdef ARDUINO_h
         Serial.println(n);
@@ -191,7 +191,7 @@ namespace cpr
     #endif
     }
 
-    void println(i64_t n)
+    void println(int64_t n)
     {
     #ifdef ARDUINO_h
         Serial.println((long long)n);
@@ -209,7 +209,7 @@ namespace cpr
     #endif
     }
 
-    void println(fl32_t f)
+    void println(float f)
     {
     #ifdef ARDUINO_h
         Serial.println(f, 6);
@@ -218,12 +218,12 @@ namespace cpr
     #endif
     }
 
-    void println(fl64_t f)
+    void println(double d)
     {
     #ifdef ARDUINO_h
-        Serial.println(f, 6);
+        Serial.println(d, 6);
     #else
-        std::cout << f << std::endl;
+        std::cout << d << std::endl;
     #endif
     }
 

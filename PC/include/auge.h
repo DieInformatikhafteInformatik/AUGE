@@ -3,6 +3,7 @@
 #include <functional>
 #include <string>
 #include <memory>
+#include <thread>
 
 class CommandManager;
 class InputReader;
@@ -21,4 +22,29 @@ public:
 
 private:
     void evalLine(std::string s);
+};
+
+class LoopThread
+{
+public:
+    using LoopFunc = std::function<void(LoopThread*)>;
+    using ConditionFunc = std::function<bool()>;
+
+private:
+    std::thread thread;
+    LoopFunc lFunc;
+    ConditionFunc cFunc;
+    bool running;
+    long timeout;
+
+    void threadFunction(long timeout);
+
+public:
+    LoopThread(LoopFunc lFunc, ConditionFunc cFunc, long timeout);
+
+    void start(long timeout);
+    void stop();
+    void join();
+    void setDaemon();
+    bool shouldRun();
 };

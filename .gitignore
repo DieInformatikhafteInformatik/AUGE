@@ -8,6 +8,10 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 
+# Arduino Directory
+Arduino/lib/
+Arduino/.gitignore
+
 # Compiled Object files
 *.slo
 *.lo

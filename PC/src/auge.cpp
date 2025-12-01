@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 
 #include "auge.h"
 #include "command.h"
@@ -51,3 +52,71 @@ void AUGESystem::evalLine(std::string s)
     }
 }
 
+
+void LoopThread::threadFunction(long timeout)
+{
+    while(shouldRun())
+    {
+        lFunc(this);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(timeout));
+    }
+}
+
+/**
+ * @param lFunc Funktion, die bei jedem Durchlauf ausgeführt werden soll
+ * @param cFunc Bedingungsfunktion, die bestimmt, ob die Schleife weiterlaufen soll; true, wenn ja.
+ * @param timeout Timeout nach jedem Schleifendurchlauf in Millisekunden
+ */
+LoopThread::LoopThread(LoopFunc lFunc, ConditionFunc cFunc, long timeout) :
+    lFunc(std::move(lFunc)), cFunc(std::move(cFunc)), timeout(timeout) {}
+
+/**
+ * @brief Startet den Thread.
+ */
+void LoopThread::start(long timeout)
+{
+    running = true;
+    thread = std::thread(&threadFunction, this, timeout);
+}
+
+/**
+ * @brief Stoppt die Schleife und somit den Thread.
+ */
+void LoopThread::stop()
+{
+    running = false;
+}
+
+/**
+ * @brief 
+ * 
+ * Diese Methode darf nicht vor Verwendung von LoopThread#start() verwendet werden.
+ */
+void LoopThread::join()
+{
+    thread.join();
+}
+
+/**
+ * @brief Macht diesen Thread zu einem Daemon-Thread.
+ * 
+ * Das Programm muss bei Vollendung des main-Threads nicht auf diesen Thread warten (Daemon Thread wird beendet).
+ * 
+ * Diese Methode darf nicht vor Verwendung von LoopThread#start() verwendet werden.
+ */
+void LoopThread::setDaemon()
+{
+    thread.detach();
+}
+
+/**
+ * @brief Bestimmt, ob die Schleife in dem Thread weiterlaufen soll.
+ * 
+ * @return true Soll weiter laufen
+ * @return false Soll gestoppt werden
+ */
+bool LoopThread::shouldRun()
+{
+    return running && cFunc();
+}

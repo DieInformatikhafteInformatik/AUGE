@@ -5,8 +5,7 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/PC/include",
-                "${workspaceFolder}/shared/include",
-                "${workspaceFolder}/shared/src"
+                "${workspaceFolder}/Arduino/include"
             ],
             "defines": [
                 "_DEBUG",
