@@ -68,14 +68,14 @@ void LoopThread::threadFunction(long timeout)
  * @param cFunc Bedingungsfunktion, die bestimmt, ob die Schleife weiterlaufen soll; true, wenn ja.
  * @param timeout Timeout nach jedem Schleifendurchlauf in Millisekunden
  */
-LoopThread::LoopThread(LoopFunc lFunc, ConditionFunc cFunc, long timeout) :
-    lFunc(std::move(lFunc)), cFunc(std::move(cFunc)), timeout(timeout) {}
+LoopThread::LoopThread(LoopFunc lFunc, ConditionFunc cFunc) :
+    lFunc(std::move(lFunc)), cFunc(std::move(cFunc)) {}
 
 /**
  * @brief Startet den Thread.
  */
 void LoopThread::start(long timeout)
-{
+{    
     running = true;
     thread = std::thread(&threadFunction, this, timeout);
 }

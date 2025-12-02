@@ -35,12 +35,10 @@ private:
     LoopFunc lFunc;
     ConditionFunc cFunc;
     bool running;
-    long timeout;
-
     void threadFunction(long timeout);
 
 public:
-    LoopThread(LoopFunc lFunc, ConditionFunc cFunc, long timeout);
+    LoopThread(LoopFunc lFunc, ConditionFunc cFunc);
 
     void start(long timeout);
     void stop();

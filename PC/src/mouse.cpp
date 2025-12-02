@@ -44,5 +44,5 @@ LoopThread createMousePositionThread(HWND hWindow, std::function<void(POINT)> co
         else result = p;
 
         command(result);
-    }, cFunc, timeout};
+    }, cFunc};
 }

@@ -5,16 +5,16 @@
 
 using packet_typeid_t = uint8_t;
 
-template<packet_typeid_t TypeId = 0>
-class Packet
+class PacketBase {};
+
+template<packet_typeid_t id = 0>
+class Packet : public PacketBase
 {
 public:
-    static constexpr uint8_t type = TypeId;
+    static constexpr uint8_t type = id;
 
     uint8_t size;
     uint16_t checksum;
-
-    virtual void run();
 };
 
 class ClearToSendPacket : public Packet<1> {};

@@ -6,20 +6,38 @@
 
 #include <iostream>
 
+class TestPacket : public Packet<10>
+{
+    uint8_t val = 10;
+};
+
+bool conditionFunc()
+{
+    return true;
+}
+
 int main()
 {
-    ServoMovePacket p;
-    p.size = 1;
-    p.duration = 1;
-    p.checksum = 1;
-    p.angle = 1;
+    TestPacket packet;
 
-    uint8_t* rawData = reinterpret_cast<uint8_t*>(&p);
-
-    for(int i = 0; i < sizeof(ServoMovePacket); i++)
+    std::optional<HANDLE> hSerial = openCOMPort(3);
+    if(hSerial && setupCOMPort(*hSerial))
     {
-        std::cout << std::to_string(i) << ": " << std::to_string(rawData[i]) << std::endl;
-    }
+        std::cout << "Connection opened\n";
 
-    
+        CommunicationsThread commThread = CommunicationsThread{
+            *hSerial,
+            conditionFunc,
+            255
+        };
+
+        commThread.pushPacket(packet);
+
+
+        commThread.start(1);
+
+        commThread.join();
+    } else std::cerr << "Fehler\n";
+
+    CloseHandle(*hSerial);
 }

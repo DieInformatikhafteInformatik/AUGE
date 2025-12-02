@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <variant>
 
 std::optional<HANDLE> openCOMPort(uint8_t portNumber)
 {
@@ -59,16 +60,15 @@ bool setupCOMPort(HANDLE hSerial)
     return true;
 }
 
-
 void CommunicationsThread::run(LoopThread *loopThread)
 {
     if(!packetQueue.empty())
     {
-        sendPacket(packetQueue.front());
+        sendPacket(*packetQueue.front());
 
         packetQueue.pop();
     } 
-    else sendPacket(StatusGetPacket());
+    else pushPacket(StatusGetPacket());
 
     awaitResponse();
 }
@@ -76,8 +76,6 @@ void CommunicationsThread::run(LoopThread *loopThread)
 void processResponse(uint8_t* rawData, DWORD bytesRead)
 {
     if(!isValidPacketData(rawData, bytesRead)) return;
-
-    Packet* 
 }
 
 void CommunicationsThread::awaitResponse()
@@ -98,18 +96,14 @@ void CommunicationsThread::awaitResponse()
     delete[] buffer;
 }
 
-bool CommunicationsThread::sendPacket(Packet& packet)
+bool CommunicationsThread::sendPacket(RawPacket rawPacket)
 {
-    fillPacketHeader(packet);
-
-    uint8_t* rawData = reinterpret_cast<uint8_t*>(&packet);
-    DWORD length = sizeof(packet);
-
+    DWORD length = rawPacket.size;
     DWORD bytesWritten;
     
     WriteFile(
         hSerial,
-        rawData,
+        rawPacket.data,
         length,
         &bytesWritten,
         NULL
@@ -118,7 +112,3 @@ bool CommunicationsThread::sendPacket(Packet& packet)
     return bytesWritten == length;
 }
 
-void CommunicationsThread::pushPacket(Packet p)
-{
-    packetQueue.push(p);
-}
